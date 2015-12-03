@@ -22,14 +22,14 @@ exports.push = function(event, context) {
 
         if (topic in Config) {
             var slack_url = Config[topic].slack_url,
-                  tmpl = Config[topic].tmpl,
-                  channel = Config[topic].channel;
+                tmpl = Config[topic].tmpl,
+                channel = Config[topic].channel;
             job = push2slack(makeSlackReq(slack_url), tmpl, channel, msg);
         } else {
             job = setting.Obtain(topic).then(function() {
                 var slack_url = Config[topic].slack_url,
-                      tmpl = Config[topic].tmpl,
-                      channel = Config[topic].channel;
+                    tmpl = Config[topic].tmpl,
+                    channel = Config[topic].channel;
                 return push2slack(makeSlackReq(slack_url), tmpl, channel, msg)
             });
         }
@@ -41,6 +41,7 @@ exports.push = function(event, context) {
         context && context.succeed("All messages posted to slack");
     })
     .catch(function(err) {
+        console.log(err)
         context && context.fail(err)
     });
 };
