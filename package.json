@@ -1,0 +1,25 @@
+{
+  "name": "lambda-slack",
+  "version": "0.0.1",
+  "description": "Send aribtrary message to slack channel",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jeffjen/lambda-slack.git"
+  },
+  "author": "Jeffrey Jen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jeffjen/lambda-slack/issues"
+  },
+  "homepage": "https://github.com/jeffjen/lambda-slack#readme",
+  "dependencies": {
+    "lodash": "^3.10.1",
+    "mustache": "^2.2.0",
+    "node-etcd": "^4.2.1",
+    "promise": "^7.0.4"
+  }
+}
