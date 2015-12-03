@@ -37,11 +37,10 @@ exports.push = function(event, context) {
         job && candidate.push(job);
     });
 
-    Promise.all(candidate).then(function() {
+    Promise.all(candidate).then(function(report) {
         context && context.succeed("All messages posted to slack");
     })
     .catch(function(err) {
-        console.log(err)
         context && context.fail(err)
     });
 };
