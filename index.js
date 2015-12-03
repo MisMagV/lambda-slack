@@ -31,7 +31,7 @@ function push2slack(opts, tmpl, channel, msg) {
 }
 
 function makeSlackReq(slack_url) {
-    const slack_req_opts = url.parse(slack_url);
+    var slack_req_opts = url.parse(slack_url);
     slack_req_opts.method = "POST";
     slack_req_opts.headers = {"Content-Type": "application/json"};
     return slack_req_opts;
@@ -50,13 +50,13 @@ exports.handler = function(event, context) {
             job = null;
 
         if (topic in Config) {
-            const slack_url = Config[topic].slack_url,
+            var slack_url = Config[topic].slack_url,
                   tmpl = Config[topic].tmpl,
                   channel = Config[topic].channel;
             job = push2slack(makeSlackReq(slack_url), tmpl, channel, msg);
         } else {
             job = setting.Obtain(topic).then(function() {
-                const slack_url = Config[topic].slack_url,
+                var slack_url = Config[topic].slack_url,
                       tmpl = Config[topic].tmpl,
                       channel = Config[topic].channel;
                 return push2slack(makeSlackReq(slack_url), tmpl, channel, msg)
