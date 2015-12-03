@@ -19,10 +19,13 @@ function push2slack(opts, tmpl, channel, msg) {
         });
 
         var message = JSON.parse(msg),
-            output = {
-                text: Mustache.render(tmpl, message),
-                channel: channel,
-            };
+            decodedSrc = new Buffer(message.userMetadata.src, "base64");
+
+        message.userMetadata.src = decodedSrc;
+        var output = {
+            text: Mustache.render(tmpl, message),
+            channel: channel,
+        };
 
         req.write(JSON.stringify(output));
         req.end();
