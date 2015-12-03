@@ -37,7 +37,7 @@ function makeSlackReq(slack_url) {
     return slack_req_opts;
 }
 
-exports.handler = function(event, context) {
+exports.push = function(event, context) {
     var candidate = [];
 
     (event.Records || []).forEach(function (rec) {
